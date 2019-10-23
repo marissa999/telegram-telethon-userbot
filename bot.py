@@ -53,7 +53,7 @@ async def self(event):
 	mirrored_letters = ['o', 'u']
 	for letter in mirrored_letters:
 		for wordnumber, word in enumerate(words):
-			if extractor.has_urls(word):
+			if extractor.has_urls(word) or word[0].isalnum() == False:
 				continue
 			elif letter in word:
 				for i in enumerate(word):
