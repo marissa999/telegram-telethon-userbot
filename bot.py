@@ -42,16 +42,15 @@ async def self(event):
 		await client.send_message(event.message.chat_id, message_string)
 		return
 
-	if "o" in message_string or "u" in message_string:
-		no_urls = re.sub(r'[^ ]+\.[^ ]+', "", message_string)
-		input_list = list(no_urls)
-		for i, c in enumerate(input_list):
-			if c == "o" and probability(0.002):
-				input_list[i] = "owo"
-			if c == "u" and probability(0.002):
-				input_list[i] = "uwu"
-		output = "".join(input_list)
-		message_string = output
+	words = message_string.split()
+	mirrored_letters = ['o', 'u']
+	for letter in mirrored_letters:
+		for wordnumber, word in enumerate(words):
+			if letter in word:
+				for i, c in enumerate(word):
+					if word[i] == letter and probability(0.002):
+						words[wordnumber] = word[:i] + letter + "w" + letter + word[i + 1:]
+	message_string = " ".join(words)
 
 	if message_string != event.text:
 		await event.edit(message_string)
@@ -60,7 +59,7 @@ async def self(event):
 		str_orig = message_string
 		new_message = str_orig.replace(".. _ .", ". _ .").replace("..-.", ".-.")
 		await event.edit(new_message)
-		for _ in range(10):               
+		for _ in range(10):			   
 			await sleep(0.5)
 			await event.edit(str_orig.replace(".. _ .", "._  .").replace("..-.", "._."))
 			await sleep(0.5)
