@@ -43,7 +43,7 @@ async def self(event):
 		return
 
 	words = message_string.split()
-	mirrored_letters = ['o', 'u']
+	mirrored_letters = ['o', 'u', 'O', 'U']
 	for letter in mirrored_letters:
 		for wordnumber, word in enumerate(words):
 			if letter in word:
