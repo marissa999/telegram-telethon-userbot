@@ -8,6 +8,7 @@ from telethon import *
 from telethon.tl.functions.messages import GetFullChatRequest
 from telethon.tl.functions.channels import GetParticipantsRequest
 from telethon.tl.types import ChannelParticipantsSearch
+from urlextract import URLExtract
 
 # Import settings
 import env
@@ -28,6 +29,9 @@ telephone_number = sys.argv[2]
 	
 client = TelegramClient(account_file, env.api_id, env.api_hash)
 
+# Initialise extractor
+extractor = URLExtract()
+
 @client.on(events.NewMessage(outgoing=True))
 async def self(event):
 	message_string = event.text
@@ -43,10 +47,12 @@ async def self(event):
 		return
 
 	words = message_string.split()
-	mirrored_letters = ['o', 'u', 'O', 'U']
+	mirrored_letters = ['o', 'u']
 	for letter in mirrored_letters:
 		for wordnumber, word in enumerate(words):
-			if letter in word:
+			if extractor.has_urls(word):
+				continue
+			elif letter in word:
 				for i, c in enumerate(word):
 					if word[i] == letter and probability(0.002):
 						words[wordnumber] = word[:i] + letter + "w" + letter + word[i + 1:]
