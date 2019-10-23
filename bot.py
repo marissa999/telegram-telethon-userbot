@@ -4,7 +4,7 @@ import random
 from random import random
 import asyncio
 from asyncio import sleep
-from telethon import *
+from telethon import TelegramClient,events
 from telethon.tl.functions.messages import GetFullChatRequest
 from telethon.tl.functions.channels import GetParticipantsRequest
 from telethon.tl.types import ChannelParticipantsSearch
@@ -56,7 +56,7 @@ async def self(event):
 			if extractor.has_urls(word):
 				continue
 			elif letter in word:
-				for i, c in enumerate(word):
+				for i in enumerate(word):
 					if word[i] == letter and probability(0.002):
 						words[wordnumber] = word[:i] + letter + "w" + letter + word[i + 1:]
 	message_string = " ".join(words)
