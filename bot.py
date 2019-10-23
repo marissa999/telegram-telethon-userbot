@@ -57,17 +57,17 @@ async def self(event):
 
 	if ".. _ ." in message_string or "..-." in message_string:
 		str_orig = message_string
-		new_message = str_orig.replace(".. _ .", ". _ .").replace("..-.", ".-.")
+		new_message = str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.")
 		await event.edit(new_message)
 		for _ in range(10):			   
 			await sleep(0.5)
 			await event.edit(str_orig.replace(".. _ .", "._  .").replace("..-.", "._."))
 			await sleep(0.5)
-			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".-."))
+			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–."))
 			await sleep(0.5)
 			await event.edit(str_orig.replace(".. _ .", ".  _.").replace("..-.", "._."))
 			await sleep(0.5)
-			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".-."))
+			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–."))
 						
 client.start(phone=telephone_number)
 client.run_until_disconnected()
