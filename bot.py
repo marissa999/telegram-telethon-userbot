@@ -1,6 +1,4 @@
 import sys
-import re
-import random
 from random import random
 import asyncio
 from asyncio import sleep
@@ -50,7 +48,7 @@ async def self(event):
 		return
 
 	words = message_string.split()
-	mirrored_letters = ['o', 'u']
+	mirrored_letters = ['o', 'u', 'U', 'O']
 	for letter in mirrored_letters:
 		for wordnumber, word in enumerate(words):
 			if extractor.has_urls(word):
