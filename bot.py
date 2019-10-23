@@ -35,7 +35,10 @@ extractor = URLExtract()
 @client.on(events.NewMessage(outgoing=True))
 async def self(event):
 	message_string = event.text
-
+	
+	# Update TLD list when list is 120 days old
+	extractor.update_when_older(120)
+		
 	if "@all" in message_string:
 		await event.delete()
 		all_participants = await client.get_participants(event.message.chat_id)
