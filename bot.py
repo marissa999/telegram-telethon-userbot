@@ -54,7 +54,7 @@ async def self(event):
 		if extractor.has_urls(word):
 			continue
 
-		if "ll" in word:
+		if "ll" in word && probability(0.2):
 			await event.edit(message_string.replace('ll', 'ww'))
 
 	mirrored_letters = ['o', 'u', 'U', 'O']
