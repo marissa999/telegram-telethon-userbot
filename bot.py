@@ -1,5 +1,4 @@
 import sys
-import re
 from random import random
 import asyncio
 from asyncio import sleep
