@@ -6,16 +6,11 @@ from telethon import TelegramClient,events
 from telethon.tl.functions.messages import GetFullChatRequest
 from telethon.tl.functions.channels import GetParticipantsRequest
 from telethon.tl.types import ChannelParticipantsSearch
-from urlextract import URLExtract
 
 # Import settings
 import env
 
 ########################
-
-def probability(percent):
-	outcome = random() < percent
-	return outcome
 
 # parse account from cli
 if len(sys.argv) != 3:
@@ -27,16 +22,10 @@ telephone_number = sys.argv[2]
 	
 client = TelegramClient(account_file, env.api_id, env.api_hash)
 
-# Initialise extractor
-extractor = URLExtract()
-
 @client.on(events.NewMessage(outgoing=True))
 async def self(event):
 	message_string = event.text
-	
-	# Update TLD list when list is 120 days old
-	extractor.update_when_older(120)
-		
+			
 	if "@all" in message_string:
 		await event.delete()
 		all_participants = await client.get_participants(event.message.chat_id)
@@ -47,26 +36,11 @@ async def self(event):
 		await client.send_message(event.message.chat_id, message_string)
 		return
 
-	words = message_string.split()
-	mirrored_letters = ['o', 'u', 'U', 'O']
-	for letter in mirrored_letters:
-		for wordnumber, word in enumerate(words):
-			if extractor.has_urls(word) or word[0].isalnum() == False:
-				continue
-			elif letter in word:
-				for i in enumerate(word):
-					if word[i] == letter and probability(0.002):
-						words[wordnumber] = word[:i] + letter + "w" + letter + word[i + 1:]
-	message_string = " ".join(words)
-
-	if message_string != event.text:
-		await event.edit(message_string)
-
 	if ".. _ ." in message_string or "..-." in message_string:
 		str_orig = message_string
 		new_message = str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.")
 		await event.edit(new_message)
-		for _ in range(10):			   
+		for _ in range(20):			   
 			await sleep(0.5)
 			await event.edit(str_orig.replace(".. _ .", "._  .").replace("..-.", "._."))
 			await sleep(0.5)
