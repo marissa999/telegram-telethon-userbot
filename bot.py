@@ -46,7 +46,7 @@ async def self(event):
 			await sleep(0.5)
 			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.").replace(".p.p", "p.p"))
 			await sleep(0.5)
-			await event.edit(str_orig.replace(".. _ .", ".  _.").replace("..-.", "._.")).replace(".p.p", "q.q")
+			await event.edit(str_orig.replace(".. _ .", ".  _.").replace("..-.", "._.").replace(".p.p", "q.q"))
 			await sleep(0.5)
 			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.").replace(".p.p", "p.p"))
 
