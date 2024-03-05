@@ -36,19 +36,19 @@ async def self(event):
 		await client.send_message(event.message.chat_id, message_string)
 		return
 
-	if ".. _ ." in message_string or "..-." in message_string:
+	if ".. _ ." in message_string or "..-." or ".p.p" in message_string:
 		str_orig = message_string
-		new_message = str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.")
+		new_message = str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.").replace(".p.p", "p.p")
 		await event.edit(new_message)
 		for _ in range(20):			   
 			await sleep(0.5)
-			await event.edit(str_orig.replace(".. _ .", "._  .").replace("..-.", "._."))
+			await event.edit(str_orig.replace(".. _ .", "._  .").replace("..-.", "._.").replace(".p.p", "q.q"))
 			await sleep(0.5)
-			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–."))
+			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.").replace(".p.p", "p.p"))
 			await sleep(0.5)
-			await event.edit(str_orig.replace(".. _ .", ".  _.").replace("..-.", "._."))
+			await event.edit(str_orig.replace(".. _ .", ".  _.").replace("..-.", "._.")).replace(".p.p", "q.q")
 			await sleep(0.5)
-			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–."))
-						
+			await event.edit(str_orig.replace(".. _ .", ". _ .").replace("..-.", ".–.").replace(".p.p", "p.p"))
+
 client.start(phone=telephone_number)
 client.run_until_disconnected()
