@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 from random import random
 import asyncio
@@ -19,7 +21,7 @@ if len(sys.argv) != 3:
 
 account_file = sys.argv[1]
 telephone_number = sys.argv[2]
-	
+
 client = TelegramClient(account_file, env.api_id, env.api_hash)
 
 @client.on(events.NewMessage(outgoing=True))
