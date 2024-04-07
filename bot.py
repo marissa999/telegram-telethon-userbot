@@ -45,7 +45,7 @@ async def self(event):
 		await client.send_message(event.message.chat_id, message_string)
 		return
 
-	if ".. _ ." in message_string or "..-." in message_string or ".p.p" in message_string:
+	if ".. _ ." in message_string or "..-." in message_string or ".p.p" in message_string or ".;_;" in message_string:
 		str_orig = message_string
 		new_message = (str_orig
 			.replace(".. _ .", ". _ .")
