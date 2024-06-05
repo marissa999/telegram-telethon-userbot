@@ -45,6 +45,14 @@ async def self(event):
 		await client.send_message(event.message.chat_id, message_string)
 		return
 
+	if "https://x.com" in message_string or "https://twitter.com" in message_string:
+		str_orig = message_string
+		new_message = (str_orig
+			.replace("https://x.com", "https://fxtwitter.com")
+			.replace("https://twitter.com", "https://fxtwitter.com")
+		)
+		await event.edit(new_message)
+
 	if ".. _ ." in message_string or "..-." in message_string or ".p.p" in message_string or ".;_;" in message_string:
 		str_orig = message_string
 		new_message = (str_orig
